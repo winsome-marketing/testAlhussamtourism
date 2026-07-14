@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحسام للسياحة - تجارب سفر استثنائية منذ 1957</title>
+    <!-- خطوط جوجل: خط Tajawal المميز للغة العربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- مكتبة أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#103047',      // الكحلي الداكن
+                        secondary: '#2EA4A3',    // التيل الفيروزي
+                        accent: '#D27D00',       // الذهبي النحاسي
+                        bgLight: '#FFFFFF',      // الأبيض النقي
+                        bgAlt: '#F4F7F9',        // الرمادي الثلجي الفاتح
+                        textGray: '#666666'      // الرمادي المتوسط للفقرات
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* تأثيرات تنقل تبويبات الرحلات */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-bgLight text-primary overflow-x-hidden">
+
+    <!-- 1. الهيدر (Header & Navigation) -->
+    <header class="w-full fixed top-0 z-50 shadow-md">
+        <!-- الشريط العلوي (Top Bar) -->
+        <div class="bg-primary text-white text-xs py-2 px-4 md:px-12 flex justify-between items-center border-b border-white/10">
+            <div class="flex items-center gap-6">
+                <span><i class="fa-solid fa-phone text-secondary ml-2"></i> الرقم الموحد: 920016017</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-envelope text-secondary ml-2"></i> cs@alhussam.com</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#" class="hover:text-secondary transition"><i class="fa-solid fa-globe ml-1"></i> English</a>
+            </div>
+        </div>
+        <!-- شريط التنقل الرئيسي (Navigation Menu) -->
+        <nav class="bg-white/95 backdrop-blur-md py-3 px-4 md:px-12 flex justify-between items-center">
+            <!-- الشعار الرسمي للحسام -->
+            <div class="flex items-center">
+                <a href="#">
+                    <img src="https://alhussamtourism.com/wp-content/uploads/2024/11/AlhussamTourism_Left-Logo_1000px.png" alt="الحسام للسياحة" class="h-12 md:h-14 object-contain">
+                </a>
+            </div>
+            <!-- الروابط الكبيرة (Desktop) -->
+            <div class="hidden lg:flex items-center gap-8 font-medium">
+                <a href="#" class="text-secondary hover:text-secondary transition font-bold">الرئيسية</a>
+                <a href="#about" class="hover:text-secondary transition">من نحن</a>
+                <a href="#services" class="hover:text-secondary transition">خدماتنا</a>
+                <a href="#destinations" class="hover:text-secondary transition">وجهاتنا</a>
+                <a href="#contact" class="hover:text-secondary transition">تواصل معنا</a>
+            </div>
+            <!-- زر اتخاذ إجراء أساسي -->
+            <div class="hidden md:block">
+                <a href="#contact" class="bg-secondary text-white px-5 py-2.5 rounded-md font-bold text-sm hover:bg-secondary/90 shadow-md hover:shadow-lg transition-all duration-300">
+                    تخطيط رحلة مخصصة
+                </a>
+            </div>
+            <!-- زر القائمة للجوال -->
+            <button id="menu-btn" class="lg:hidden text-primary focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- القائمة الجانبية للجوال -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white w-full border-t border-gray-100 py-4 px-6 flex flex-col gap-4 shadow-inner">
+            <a href="#" class="text-secondary font-bold">الرئيسية</a>
+            <a href="#about" class="text-primary hover:text-secondary font-medium">من نحن</a>
+            <a href="#services" class="text-primary hover:text-secondary font-medium">خدماتنا</a>
+            <a href="#destinations" class="text-primary hover:text-secondary font-medium">وجهاتنا</a>
+            <a href="#contact" class="text-primary hover:text-secondary font-medium">تواصل معنا</a>
+            <a href="#contact" class="bg-secondary text-white text-center py-2.5 rounded-md font-bold text-sm">تخطيط رحلة مخصصة</a>
+        </div>
+    </header>
+
+    <!-- 2. قسم الواجهة التفاعلي المبتكر (Split Hero Section with Video/Overlay) -->
+    <section class="relative h-[100vh] flex items-center overflow-hidden pt-20">
+        <!-- مشغل الفيديو كخلفية كاملة -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="https://alhussamtourism.com/wp-content/uploads/2024/11/2024_Alhussam_HomeBannar_1920_570_Video.mp4" type="video/mp4">
+        </video>
+        <!-- طبقة التدرج اللوني الكحلي الداكن المائل لليسار لضمان دقة القراءة وسهولتها -->
+        <div class="absolute inset-0 bg-gradient-to-l from-primary/95 via-primary/80 to-transparent z-10"></div>
+        
+        <div class="container mx-auto px-6 md:px-12 z-20 h-full flex items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 w-full gap-8">
+                <!-- الجانب الأيمن المخصص للمحتوى البارز -->
+                <div class="lg:col-span-7 text-right text-white space-y-6">
+                    <span class="inline-block bg-secondary/20 text-secondary px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wide border border-secondary/30">
+                        إرث يمتد منذ عام 1957 م
+                    </span>
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+                        نصنع تجارب سفر استثنائية تعكس أصالة الضيافة السعودية
+                    </h1>
+                    <p class="text-base md:text-lg text-white/80 max-w-xl leading-relaxed font-light">
+                        شريكك الاستراتيجي المعتمد لإدارة الوجهات السياحية (DMC)، برامج الحج والعمرة المتميزة، وسياحة المؤتمرات والمعارض (MICE) بما يتوافق مع رؤية السعودية 2030.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#destinations" class="w-full sm:w-auto bg-secondary text-white text-center font-bold px-8 py-4 rounded-md shadow-lg hover:bg-secondary/90 transition-all duration-300 transform hover:-translate-y-1">
+                            استكشف باقاتنا السياحية
+                        </a>
+                        <button onclick="selectServiceAndScroll('mice')" class="w-full sm:w-auto bg-transparent border-2 border-white/80 text-white font-bold px-8 py-3.5 rounded-md hover:bg-white hover:text-primary transition-all duration-300 transform hover:-translate-y-1">
+                            تنظيم فعاليات الشركات
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- سهم النزول لأسفل -->
+        <div class="absolute bottom-6 left-12 text-white/50 animate-bounce z-20">
+            <a href="#trust-bar"><i class="fa-solid fa-chevron-down text-2xl"></i></a>
+        </div>
+    </section>
+
+    <!-- 3. لوحة الإحصائيات والإنجازات (Trust Panel) -->
+    <section id="trust-bar" class="bg-bgLight py-12 border-b border-gray-100">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-bgAlt p-6 rounded-lg flex items-center gap-4 hover:shadow-md transition">
+                    <span class="text-secondary text-3xl"><i class="fa-solid fa-award"></i></span>
+                    <div class="text-right">
+                        <h4 class="font-bold text-lg text-primary">إرث يمتد لـ 65 عاماً</h4>
+                        <p class="text-xs text-textGray">خبرة عريقة متراكمة بداخل وخارج المملكة منذ 1957 م</p>
+                    </div>
+                </div>
+                <div class="bg-bgAlt p-6 rounded-lg flex items-center gap-4 hover:shadow-md transition border-y md:border-y-0 md:border-x border-gray-200/50">
+                    <span class="text-secondary text-3xl"><i class="fa-solid fa-building-shield"></i></span>
+                    <div class="text-right">
+                        <h4 class="font-bold text-lg text-primary">مجموعة سياد القابضة</h4>
+                        <p class="text-xs text-textGray">قوة لوجستية واستقرار استراتيجي لخدمة ضيوفنا</p>
+                    </div>
+                </div>
+                <div class="bg-bgAlt p-6 rounded-lg flex items-center gap-4 hover:shadow-md transition">
+                    <span class="text-secondary text-3xl"><i class="fa-solid fa-certificate"></i></span>
+                    <div class="text-right">
+                        <h4 class="font-bold text-lg text-primary">مرخصة من وزارة السياحة</h4>
+                        <p class="text-xs text-textGray">وكيل محلي مرخص لإدارة وتسهيل كافة المعاملات والرحلات</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. قسم "من نحن والتحول الاستراتيجي" بعد التحديث وإلغاء تداخل الصور (About & Evolution) -->
+    <section id="about" class="py-20 bg-bgLight">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- عمود الصورة: أصبحت نظيفة وبكامل حجمها الجمالي بدون تداخل بوكسات -->
+                <div class="relative">
+                    <img src="https://i0.wp.com/alhussamtourism.com/wp-content/uploads/2024/11/2024_Alhussam_aboutUs_640_811_home.jpg?w=640&ssl=1" alt="من نحن - الحسام للسياحة" class="rounded-lg shadow-2xl w-full object-cover h-[480px]">
+                </div>
+
+                <!-- عمود النص والإحصائيات -->
+                <div class="space-y-6">
+                    <span class="text-secondary font-bold text-sm tracking-widest uppercase">قصة نجاح وتطور</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-primary leading-tight">
+                        السعودية تتطور.. ونحن نقود هذا التحول
+                    </h2>
+                    <div class="w-20 h-1 bg-secondary rounded"></div>
+                    <p class="text-textGray leading-relaxed text-sm md:text-base">
+                        تأسست شركة الحسام للسياحة (المعروفة سابقاً بـ <strong class="text-primary">"الحسام عمرة"</strong>) عام 1957 م كإحدى ركائز قطاع السياحة بالمملكة وتحت مظلة <strong class="text-primary">مجموعة سياد القابضة</strong>. وبالتوازي مع رؤية المملكة 2030، قمنا بتوسيع آفاق أعمالنا لنتبنى نموذج "إدارة الوجهات السياحية" (DMC) لدعم وقيادة قطاع السياحة الدينية والترفيهية والداخلية بكفاءة عالية.
+                    </p>
+                    <p class="text-textGray leading-relaxed text-sm md:text-base">
+                        نحن نختص بتقديم خدمات سياحية متكاملة تلبي احتياجات الأفراد وقطاع الأعمال؛ بدءاً من تيسير التأشيرات عبر وكلائنا الدوليين وحجوزات الطيران والفنادق الشاملة، إلى إدارة النقل اللوجستي والحلول الترفيهية المخصصة، لضمان رحلات استثنائية ملهمة وموثوقة.
+                    </p>
+
+                    <!-- العدادات الرقمية الجديدة والأنيقة (Stats Grid) كبديل للبوكس المتداخل -->
+                    <div class="grid grid-cols-2 gap-6 pt-4 border-t border-gray-100">
+                        <div class="space-y-1">
+                            <span class="block text-3xl font-extrabold text-secondary">65+ سنة</span>
+                            <span class="block text-xs text-textGray leading-relaxed">من الريادة وتقديم أرقى الخدمات السياحية الفاخرة والدينية بداخل المملكة وخارجها.</span>
+                        </div>
+                        <div class="space-y-1">
+                            <span class="block text-3xl font-extrabold text-secondary">1957 م</span>
+                            <span class="block text-xs text-textGray leading-relaxed">تاريخ عريق من الثقة والموثوقية وبناء الشراكات السياحية الناجحة والمستمرة.</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="#services" class="inline-flex items-center gap-2 bg-primary text-white font-bold px-6 py-3 rounded hover:bg-primary/95 transition-all shadow-md">
+                            استكشف خدماتنا الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. بوابات الاستكشاف العريضة المتناوبة (Experience Showcases - The New Core Pillars Layout) -->
+    <section id="services" class="py-20 bg-bgAlt">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <span class="text-secondary font-bold text-sm tracking-widest uppercase block mb-3">ركائز خدماتنا</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-primary mb-4">خدمات وتجارب متكاملة مصممة خصيصاً لك</h2>
+            <div class="w-20 h-1 bg-secondary rounded mx-auto mb-16"></div>
+            
+            <div class="space-y-16">
+                <!-- بوابة 1: الحج والعمرة الفاخرة -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-lg overflow-hidden shadow-md p-6 text-right">
+                    <div class="lg:col-span-5 h-[300px] overflow-hidden rounded-md">
+                        <img src="https://i0.wp.com/alhussamtourism.com/wp-content/uploads/2024/11/01-2024_alhussam_services_home_245_262Umrah.jpg?w=245&ssl=1" alt="الحج والعمرة" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="lg:col-span-7 space-y-4">
+                        <span class="text-accent font-bold text-xs uppercase block">تيسير الروحانية والمناسك</span>
+                        <h3 class="font-extrabold text-2xl text-primary">الحج والعمرة (عمرة بلس)</h3>
+                        <p class="text-textGray text-sm leading-relaxed">
+                            نصنع لضيوف الرحمن رحلات روحانية آمنة وميسرة تماماً. نضمن لك الإقامة في أرقى الفنادق القريبة من الحرمين الشريفين، تيسير إجراءات التأشيرات السريعة، مع تنظيم مزارات وجولات ثقافية غنية بالتراث الإسلامي عبر قطار الحرمين وسيارات الغولف للطواف والسعي.
+                        </p>
+                        <button onclick="selectServiceAndScroll('umrah-plus')" class="bg-secondary hover:bg-secondary/90 text-white font-bold text-xs py-2.5 px-6 rounded transition shadow">
+                            خطط لرحلة العمرة الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- بوابة 2: السياحة الترفيهية والثقافية -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-lg overflow-hidden shadow-md p-6 text-right">
+                    <div class="lg:col-span-7 space-y-4 order-2 lg:order-1">
+                        <span class="text-accent font-bold text-xs uppercase block">مغامرات تراثية وثقافية</span>
+                        <h3 class="font-extrabold text-2xl text-primary">السياحة الداخلية والترفيهية (Leisure Travel)</h3>
+                        <p class="text-textGray text-sm leading-relaxed">
+                            صممنا لك برامج سياحية متكاملة تبرز تنوع طبيعة المملكة وعراقة تراثها. استكشف عجائب العلا والأبعاد التاريخية لجدة التاريخية، تذوق عبق مزارع ورد الطائف، واستمتع بتجربة الهايكنج والمخيمات البدوية الفاخرة المجهزة بالكامل في ذهبان.
+                        </p>
+                        <a href="#destinations" class="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold text-xs py-2.5 px-6 rounded transition shadow">
+                            استكشف برامجنا السياحية <i class="fa-solid fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                    <div class="lg:col-span-5 h-[300px] overflow-hidden rounded-md order-1 lg:order-2">
+                        <img src="https://i0.wp.com/alhussamtourism.com/wp-content/uploads/2024/11/02-2024_alhussam_services_home_245_262Tourism.jpg?w=245&ssl=1" alt="السياحة الداخلية" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+
+                <!-- بوابة 3: سياحة الأعمال MICE -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-lg overflow-hidden shadow-md p-6 text-right">
+                    <div class="lg:col-span-5 h-[300px] overflow-hidden rounded-md">
+                        <img src="https://i0.wp.com/alhussamtourism.com/wp-content/uploads/2024/11/03-2024_alhussam_services_home_245_262groundservices.jpg?w=245&ssl=1" alt="سياحة الأعمال MICE" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="lg:col-span-7 space-y-4">
+                        <span class="text-accent font-bold text-xs uppercase block">تخطيط لوجستي للشركات</span>
+                        <h3 class="font-extrabold text-2xl text-primary">إدارة الاجتماعات والمؤتمرات والمعارض (MICE)</h3>
+                        <p class="text-textGray text-sm leading-relaxed">
+                            نحن نصمم تجارب لا تُنسى لشركتك. نتولى إدارة المؤتمرات، فعاليات بناء الفرق، الرحلات التحفيزية، والاجتماعات الرفيعة بالكامل؛ من توفير المواقع، وتأمين التراخيص اللوجستية وتأشيرات المندوبين، لضمان ريادتك وبأعلى مستويات الكفاءة.
+                        </p>
+                        <button onclick="selectServiceAndScroll('mice')" class="bg-secondary hover:bg-secondary/90 text-white font-bold text-xs py-2.5 px-6 rounded transition shadow">
+                            تواصل مع مستشار الفعاليات <i class="fa-solid fa-arrow-left mr-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- بوابة 4: الخدمات الفاخرة VIP -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-lg overflow-hidden shadow-md p-6 text-right">
+                    <div class="lg:col-span-7 space-y-4 order-2 lg:order-1">
+                        <span class="text-accent font-bold text-xs uppercase block">الفخامة لكبار الشخصيات VVIP</span>
+                        <h3 class="font-extrabold text-2xl text-primary">الخدمات الفاخرة والخاصة (Elite VIP)</h3>
+                        <p class="text-textGray text-sm leading-relaxed">
+                            ارتقِ برحلتك إلى آفاق من التميز. نحن نقدم حجز وإدارة الطائرات الخاصة، خدمة الاستقبال الراقية بصالات "تنفيذي" الفاخرة بمطارات المملكة الرئيسية (الرياض، الدمام، جدة، والمدينة)، بالإضافة إلى تأمين أفخم سيارات الليموزين لتنقلك براحة وأمان.
+                        </p>
+                        <button onclick="selectServiceAndScroll('vip')" class="bg-secondary hover:bg-secondary/90 text-white font-bold text-xs py-2.5 px-6 rounded transition shadow">
+                            اكتشف الخدمات الفاخرة <i class="fa-solid fa-arrow-left mr-2"></i>
+                        </button>
+                    </div>
+                    <div class="lg:col-span-5 h-[300px] overflow-hidden rounded-md order-1 lg:order-2">
+                        <img src="https://i0.wp.com/alhussamtourism.com/wp-content/uploads/2024/11/04-2024_alhussam_services_home_245_262VIP.jpg?w=245&ssl=1" alt="كبار الشخصيات VIP" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. قسم الوجهات والرحلات المميزة بنظام التبويب التفاعلي الذكي بالصور الحقيقية المصححة (Featured Interactive Destinations) -->
+    <section id="destinations" class="relative py-24 bg-cover bg-center text-white" style="background-image: linear-gradient(rgba(10, 30, 45, 0.95), rgba(10, 30, 45, 0.95)), url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=1920&q=80');">
+        <div class="makkah-curve"></div>
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-12">
+                <span class="text-accent font-bold text-sm tracking-widest uppercase block mb-3">اكتشف وجهاتنا السياحية</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white">برامج سياحية متكاملة مصممة للإلهام</h2>
+                <div class="w-20 h-1 bg-accent rounded mx-auto mt-4"></div>
+            </div>
+
+            <!-- أزرار التبويب التفاعلية لجميع المدن والمخيم -->
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
+                <button onclick="switchTab('makkah')" id="btn-makkah" class="tab-btn active px-6 py-3 rounded-full font-bold text-sm border-2 border-accent bg-accent text-white transition-all">مكة المكرمة</button>
+                <button onclick="switchTab('madinah')" id="btn-madinah" class="tab-btn px-6 py-3 rounded-full font-bold text-sm border-2 border-white/20 hover:border-accent hover:text-accent transition-all">المدينة المنورة</button>
+                <button onclick="switchTab('jeddah')" id="btn-jeddah" class="tab-btn px-6 py-3 rounded-full font-bold text-sm border-2 border-white/20 hover:border-accent hover:text-accent transition-all">جدة</button>
+                <button onclick="switchTab('taif')" id="btn-taif" class="tab-btn px-6 py-3 rounded-full font-bold text-sm border-2 border-white/20 hover:border-accent hover:text-accent transition-all">الطائف</button>
+                <button onclick="switchTab('camp')" id="btn-camp" class="tab-btn px-6 py-3 rounded-full font-bold text-sm border-2 border-white/20 hover:border-accent hover:text-accent transition-all">مخيم الصحراء</button>
+            </div>
+
+            <!-- محتويات التبويبات المتغيرة ديناميكياً بـ JavaScript -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- عمود النص والتفاصيل -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <!-- محتوى مكة المكرمة -->
+                    <div id="tab-makkah" class="tab-content active space-y-6">
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-accent">رحلة مكة المكرمة</h3>
+                        <p class="text-white/80 leading-relaxed text-sm">
+                            تعتبر مكة المكرمة أقدس مدينة للمسلمين، حيث شهدت مهد الرسالة المحمدية وبها العديد من المواقع التي ترجع إلى هذه الفترة المقدسة.
+                        </p>
+                        <div class="border-r-2 border-accent/40 mr-4 pr-6 space-y-4 py-2">
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">معمل الكسوة</h4><p class="text-xs text-white/60">زيارة للتعرف على مراحل صنع الكسوة.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">متحف الحرمين الشريفين</h4><p class="text-xs text-white/60">كنز دفين من الأشياء التي يعود تاريخها إلى مئات السنين.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">مسجد الحديبية</h4><p class="text-xs text-white/60">معلم تاريخي لمكان توقيع معاهدة الحديبية.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">مسجد جعرانة ومتحف برج الساعة</h4><p class="text-xs text-white/60">الإحرام منه، ثم الانطلاق في رحلة فريدة عبر الزمن والإيمان والكون.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- محتوى المدينة المنورة -->
+                    <div id="tab-madinah" class="tab-content space-y-6">
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-accent">رحلة المدينة المنورة</h3>
+                        <p class="text-white/80 leading-relaxed text-sm">
+                            تعتبر ثاني أقدس مدينة في الإسلام بعد مكة المكرمة، فقد هاجر الرسول محمد صلى الله عليه وسلم إليها، وأصبحت عاصمة الدولة الإسلامية، وتعتبر المدينة المنورة اليوم مدينة حديثة متعددة الأعراق تجذب الزوار والعلماء.
+                        </p>
+                        <div class="border-r-2 border-accent/40 mr-4 pr-6 space-y-4 py-2">
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">متحف سكة حديد الحجاز</h4><p class="text-xs text-white/60">بُني على أرض محطة السكة الحديد العثمانية المُرممة.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">شهداء أحد ومطبعة المصحف</h4><p class="text-xs text-white/60">موقع تاريخي معروف ومجمع الملك فهد لطباعة المصحف الشريف.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">معرض أسماء الله الحسنى</h4><p class="text-xs text-white/60">معرض مذهل مجاور للمسجد النبوي الشريف.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">عشاء مزرعة التمر (ليلة عربية)</h4><p class="text-xs text-white/60">جرب الضيافة العربية التقليدية وسط بيئة نخيل هادئة.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- محتوى جدة -->
+                    <div id="tab-jeddah" class="tab-content space-y-6">
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-accent">رحلة جدة</h3>
+                        <p class="text-white/80 leading-relaxed text-sm">
+                            قم بزيارة واحدة من أكثر المدن الحيوية في منطقة الحجاز وعلى ساحل البحر الأحمر، فتعتبر جدة مركزًا حضاريًّا وتجاريًّا رئيسيًّا في غرب السعودية، ممتلئة بالتراث الثقافي والتاريخي الذي يعود آلاف السنين.
+                        </p>
+                        <div class="border-r-2 border-accent/40 mr-4 pr-6 space-y-4 py-2">
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">قلب مدينة جدة التاريخية وبيت نصيف</h4><p class="text-xs text-white/60">زيارة المدينة القديمة وهيكلها التاريخي البارز.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">المسجد العائم (مسجد عائشة)</h4><p class="text-xs text-white/60">بناء فريد يقدم إطلالة رائعة ومباشرة على البحر الأحمر.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">كورنيش جدة</h4><p class="text-xs text-white/60">رحلة ساحلية ممتعة ومميزة على طول شواطئ البحر الأحمر.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- محتوى الطائف -->
+                    <div id="tab-taif" class="tab-content space-y-6">
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-accent">رحلة الطائف</h3>
+                        <p class="text-white/80 leading-relaxed text-sm">
+                            من أشهر المدن السعودية التي تتميز بإطلالاتها الخلابة وطبيعتها وطقسها الذي لا مثيل له على مدار العام.
+                        </p>
+                        <div class="border-r-2 border-accent/40 mr-4 pr-6 space-y-4 py-2">
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">جولة في مزرعة الزهور</h4><p class="text-xs text-white/60">موطن ورد الطائف الطبيعي والشهير برائحته الفواحة.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">مسجد عباس ومتحف الشريف</h4><p class="text-xs text-white/60">زيارة مسجد الصحابي عبدالله بن العباس وجولة بالمتحف التاريخي والثقافي.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">سوق الفاكهة</h4><p class="text-xs text-white/60">سوق تقليدي يعرض محاصيل الطائف الزراعية المتميزة.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- محتوى مخيم الصحراء -->
+                    <div id="tab-camp" class="tab-content space-y-6">
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-accent">مخيم الصحراء</h3>
+                        <p class="text-white/80 leading-relaxed text-sm">
+                            استمتع بيوم استثنائي في المواقع الصحراوية الشمالية بجدة في ذهبان، واكتشف منطقة تخطف الأنفاس بكثبانها الذهبية وتجرب نمط الحياة البدوية مع لمسة حديثة.
+                        </p>
+                        <div class="border-r-2 border-accent/40 mr-4 pr-6 space-y-4 py-2">
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">الخيمة البدوية والألعاب الرملية</h4><p class="text-xs text-white/60">جرب الضيافة التقليدية، وركوب الدراجات الرباعية وتجربة الدفع الرباعي على الرمال.</p>
+                            </div>
+                            <div class="relative"><span class="absolute -right-[31px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-primary"></span>
+                                <h4 class="font-bold text-white">العشاء التقليدي والأنشطة</h4><p class="text-xs text-white/60">لحم خروف مشوي تقليدي، مع تجربة الهايكنج والمشي لمسافات طويلة.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ربط الزر برمجياً بالفورم بالأسفل وتفعيل التحديد الذكي للوجهة -->
+                    <div class="pt-6">
+                        <button onclick="bookCurrentDestination()" class="inline-block bg-accent hover:bg-accent/90 text-white font-bold px-8 py-3.5 rounded shadow-lg transition-all duration-300">
+                            احجز هذا البرنامج أو صمم رحلتك المخصصة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- عمود الصورة التوضيحية المتغيرة المحدثة ببيانات حقيقية وخالية من العناصر غير المناسبة -->
+                <div class="lg:col-span-5 relative hidden lg:block">
+                    <!-- صورة مكة الحقيقية -->
+                    <img id="img-makkah" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-820U93a-qpMVd13UvG78FqV_FO8ynBgTctV8ny-FotYTepfKu4H8o1Nr&s=10" alt="مكة المكرمة" class="tab-img-element rounded-lg shadow-2xl w-full object-cover h-[500px]">
+                    <!-- صورة المدينة الحقيقية -->
+                    <img id="img-madinah" src="https://cdn.alweb.com/thumbs/arabcountriesguide/article/fit710x532/1/%D8%A7%D9%84%D9%85%D8%AF%D9%8E%D9%8A%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D9%88%D8%B1%D8%A9-%D9%83%D9%84-%D9%85%D8%A7-%D8%AA%D8%AD%D8%AA%D8%A7%D8%AC-%D9%85%D8%B9%D8%B1%D9%81%D8%AA%D9%87.jpeg" alt="المدينة المنورة" class="tab-img-element hidden rounded-lg shadow-2xl w-full object-cover h-[500px]">
+                    <!-- صورة جدة الحقيقية -->
+                    <img id="img-jeddah" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfJdmwR8qyv0GXH_-5TJMRsnp6PrL2MHDdHwHugwQ0lrXsN89rNlSOm9o&s=10" alt="جدة" class="tab-img-element hidden rounded-lg shadow-2xl w-full object-cover h-[500px]">
+                    <!-- صورة الطائف الحقيقية -->
+                    <img id="img-taif" src="https://blog.sothebysrealty.sa/hubfs/Imported_Blog_Media/rudaf-park-1_crop-1920x1080-jpg-1.jpg" alt="الطائف" class="tab-img-element hidden rounded-lg shadow-2xl w-full object-cover h-[500px]">
+                    <!-- صورة المخيم الحقيقية -->
+                    <img id="img-camp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTubjujRahBbesZaIBNnBkfybsQZH1OZfB-Cqqb3DVElj2y2GfaeTjLEbUN&s=10" alt="مخيم الصحراء" class="tab-img-element hidden rounded-lg shadow-2xl w-full object-cover h-[500px]">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent rounded-lg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. قسم "لماذا الحسام للسياحة؟" (Value Propositions) -->
+    <section class="py-20 bg-bgLight">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <span class="text-secondary font-bold text-sm tracking-widest uppercase block mb-3">ميزاتنا التنافسية</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-primary mb-4">لماذا الحسام للسياحة؟</h2>
+            <div class="w-20 h-1 bg-secondary rounded mx-auto mb-16"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- ميزة 1 -->
+                <div class="flex gap-4 text-right items-start p-2">
+                    <div class="text-secondary text-3xl pt-1"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div>
+                        <h3 class="font-bold text-lg text-primary mb-2">خبرة تتجاوز 65 عاماً</h3>
+                        <p class="text-textGray text-sm leading-relaxed">فهم عميق ودقيق لكافة متطلبات واحتياجات قطاع السياحة والضيافة والرحلات بالمملكة.</p>
+                    </div>
+                </div>
+                <!-- ميزة 2 -->
+                <div class="flex gap-4 text-right items-start p-2">
+                    <div class="text-secondary text-3xl pt-1"><i class="fa-solid fa-sliders"></i></div>
+                    <div>
+                        <h3 class="font-bold text-lg text-primary mb-2">مرونة تامة في الاختيار</h3>
+                        <p class="text-textGray text-sm leading-relaxed">توفير برامج مرنة وقابلة للتعديل والتفصيل لتتناسب تماماً مع ميزانيتك واهتماماتك الشخصية.</p>
+                    </div>
+                </div>
+                <!-- ميزة 3 -->
+                <div class="flex gap-4 text-right items-start p-2">
+                    <div class="text-secondary text-3xl pt-1"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div>
+                        <h3 class="font-bold text-lg text-primary mb-2">ريادة الابتكار الرقمي</h3>
+                        <p class="text-textGray text-sm leading-relaxed">نظام إلكتروني متطور وذكي لمتابعة وتدقيق الحجوزات وحركة ضيوفنا بكل سهولة وسلاسة.</p>
+                    </div>
+                </div>
+                <!-- ميزة 4 -->
+                <div class="flex gap-4 text-right items-start p-2">
+                    <div class="text-secondary text-3xl pt-1"><i class="fa-solid fa-tags"></i></div>
+                    <div>
+                        <h3 class="font-bold text-lg text-primary mb-2">أسعار حصرية وتنافسية</h3>
+                        <p class="text-textGray text-sm leading-relaxed">علاقاتنا الاستراتيجية الواسعة تتيح لنا تزويدك بأفضل قيمة لقاء أعلى جودة خدمة ممكنة.</p>
+                    </div>
+                </div>
+                <!-- ميزة 5 -->
+                <div class="flex gap-4 text-right items-start p-2">
+                    <div class="text-secondary text-3xl pt-1"><i class="fa-solid fa-handshake"></i></div>
+                    <div>
+                        <h3 class="font-bold text-lg text-primary mb-2">شراكات محلية متينة</h3>
+                        <p class="text-textGray text-sm leading-relaxed">علاقات وثيقة ومباشرة مع الهيئات الحكومية والفنادق، لاسيما بداخل مكة المكرمة والمدينة المنورة.</p>
+                    </div>
+                </div>
+                <!-- ميزة 6 -->
+                <div class="flex gap-4 text-right items-start p-2">
+                    <div class="text-secondary text-3xl pt-1"><i class="fa-solid fa-headset"></i></div>
+                    <div>
+                        <h3 class="font-bold text-lg text-primary mb-2">دعم ومتابعة على مدار الساعة</h3>
+                        <p class="text-textGray text-sm leading-relaxed">فريق عمل ميداني متخصص لتذليل العقبات وتوفير الدعم المستمر لك بداخل المملكة في أي وقت.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. قسم الشراكة الاستراتيجية (Strategic Transport Partner) -->
+    <section class="py-20 bg-bgAlt border-t border-gray-100">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 order-2 lg:order-1">
+                    <span class="text-secondary font-bold text-sm tracking-widest uppercase">شريك النقل الاستراتيجي</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-primary">تنقل بأمان وراحة مع "زائر"</h2>
+                    <div class="w-16 h-1 bg-secondary rounded"></div>
+                    <p class="text-textGray leading-relaxed text-base">
+                        من خلال شراكتنا الاستراتيجية الوثيقة مع شركة <strong>"زائر" للنقل</strong> (إحدى شركات مجموعة سياد القابضة الشقيقة)، نضمن لعملائنا وضيوفنا تجارب انتقال بري مريحة وممتعة بكافة أرجاء المملكة.
+                    </p>
+                    <p class="text-textGray leading-relaxed text-base">
+                        توفر "زائر" أسطولاً متطوراً من الحافلات الفاخرة وسيارات الليموزين المجهزة بالكامل وفق أرقى معايير الجودة السلامة والراحة لتناسب تنقلات المجموعات والأفراد بذكاء وسلاسة.
+                    </p>
+                    <div class="pt-4">
+                        <a href="#contact" class="inline-block bg-primary text-white font-bold px-6 py-3.5 rounded hover:bg-primary/95 transition shadow-md">
+                            احجز رحلتك شاملة النقل والضيافة <i class="fa-solid fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative order-1 lg:order-2">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" alt="أسطول حافلات زائر الحديث" class="rounded-lg shadow-xl w-full object-cover h-[350px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. قسم آراء الشركاء والعملاء (Social Proof) -->
+    <section class="py-20 bg-bgLight">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <span class="text-secondary font-bold text-sm tracking-widest uppercase block mb-3">قالوا عن الحسام</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-primary mb-4">شركاؤنا حول العالم يتحدثون عن تجربتهم</h2>
+            <div class="w-20 h-1 bg-secondary rounded mx-auto mb-16"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- شهادة 1 -->
+                <div class="bg-bgAlt p-8 rounded-lg shadow-sm text-right flex flex-col justify-between">
+                    <p class="text-textGray text-sm leading-relaxed mb-6 italic">
+                        "تعتبر شركة الحسام للسياحة شريكنا الأول والأكثر موثوقية في تنظيم رحلات العمرة لجروباتنا السياحية بداخل مكة والمدينة، حيث تجري المعاملات والتسهيلات بسلاسة متناهية وباحترافية شديدة ترفع من معايير الخدمة."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-gray-200/50 pt-4">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-xl font-bold">M</div>
+                        <div>
+                            <h4 class="font-bold text-primary text-sm">محمد فاروق</h4>
+                            <p class="text-xs text-textGray">مدير العمليات، وكالة نيل تورز للسياحة</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- شهادة 2 -->
+                <div class="bg-bgAlt p-8 rounded-lg shadow-sm text-right flex flex-col justify-between">
+                    <p class="text-textGray text-sm leading-relaxed mb-6 italic">
+                        "لقد نالت باقات 'عمرة بلس' إعجاباً كبيراً وواسعاً من قِبل وكلائنا وعملائنا الباحثين عن تجربة روحانية وثقافية استكشافية متكاملة بداخل ربوع المملكة. نثمن شراكتنا المستمرة مع الحسام وفريق عملهم الميداني المؤهل."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-gray-200/50 pt-4">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-xl font-bold">S</div>
+                        <div>
+                            <h4 class="font-bold text-primary text-sm">صوفي بارت</h4>
+                            <p class="text-xs text-textGray">مدير الشراكات الخارجية، جلوبال ترافل غروب</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- شهادة 3 -->
+                <div class="bg-bgAlt p-8 rounded-lg shadow-sm text-right flex flex-col justify-between">
+                    <p class="text-textGray text-sm leading-relaxed mb-6 italic">
+                        "احترافية لا تضاهى في تنظيم اللوجستيات لبرامج كبار الشخصيات VIP وسياحة الأعمال MICE بداخل المملكة، فريق عمل متيقظ جداً لكافة التفاصيل ومستوى ضيافة يعكس قيم وأصالة السعودية."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-gray-200/50 pt-4">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-xl font-bold">K</div>
+                        <div>
+                            <h4 class="font-bold text-primary text-sm">خالد الحربي</h4>
+                            <p class="text-xs text-textGray">المدير التنفيذي، شركة ريادة المستقبل القابضة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. قسم التواصل المطور (Lead Capture & Footer) -->
+    <section id="contact" class="bg-primary text-white py-16">
+        <div class="container mx-auto px-6 md:px-12">
+            <!-- نموذج التواصل المتكامل والمطور (Lead Capture Form) -->
+            <div class="bg-white text-primary rounded-lg p-8 md:p-12 shadow-2xl max-w-4xl mx-auto -mt-28 mb-16 relative z-10">
+                <div class="text-center mb-8">
+                    <span class="text-secondary font-bold text-xs uppercase tracking-wider block mb-2">استشارة مجانية ومخصصة</span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-primary mb-3">خطط لرحلتك القادمة معنا</h3>
+                    <p class="text-textGray text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+                        سواء كنت تخطط لرحلة عمرة مخصصة، فعالية لشركتك، أو رحلة سياحية فاخرة؛ اترك بياناتك وسيقوم أحد مستشارينا بالتواصل معك في أقرب وقت.
+                    </p>
+                </div>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- الاسم الكامل -->
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-sm font-bold text-primary flex items-center gap-1.5">
+                                <i class="fa-solid fa-user text-secondary text-xs"></i> الاسم الكامل
+                            </label>
+                            <input type="text" placeholder="الاسم الأول والأخير" required class="px-4 py-3 rounded border border-gray-200 text-sm focus:outline-none focus:border-secondary bg-bgAlt/50 focus:bg-white transition-all">
+                        </div>
+                        <!-- رقم الجوال -->
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-sm font-bold text-primary flex items-center gap-1.5">
+                                <i class="fa-solid fa-phone text-secondary text-xs"></i> رقم الجوال
+                            </label>
+                            <input type="tel" placeholder="مثال: 9665XXXXXXXX+" required class="px-4 py-3 rounded border border-gray-200 text-sm focus:outline-none focus:border-secondary bg-bgAlt/50 focus:bg-white transition-all text-left" dir="ltr">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- البريد الإلكتروني -->
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-sm font-bold text-primary flex items-center gap-1.5">
+                                <i class="fa-solid fa-envelope text-secondary text-xs"></i> البريد الإلكتروني
+                            </label>
+                            <input type="email" placeholder="example@domain.com" required class="px-4 py-3 rounded border border-gray-200 text-sm focus:outline-none focus:border-secondary bg-bgAlt/50 focus:bg-white transition-all text-left" dir="ltr">
+                        </div>
+                        <!-- نوع الخدمة المطلوبة المحدث حسب الطلب عزل عمرة بلس وربط الترفيهي بالمدن -->
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-sm font-bold text-primary flex items-center gap-1.5">
+                                <i class="fa-solid fa-briefcase text-secondary text-xs"></i> نوع الخدمة أو الرحلة المطلوبة
+                            </label>
+                            <select id="service-select" required class="px-4 py-3 rounded border border-gray-200 text-sm focus:outline-none focus:border-secondary bg-bgAlt/50 focus:bg-white transition-all appearance-none cursor-pointer">
+                                <option value="" disabled selected hidden>اختر نوع الخدمة أو الوجهة...</option>
+                                <option value="umrah-plus">الحج والعمرة</option>
+                                <option value="leisure-jeddah">سياحة ترفيهية - جدة</option>
+                                <option value="leisure-taif">سياحة ترفيهية - الطائف</option>
+                                <option value="leisure-madinah">سياحة ترفيهية - المدينة المنورة</option>
+                                <option value="leisure-camp">مخيم الصحراء (ذهبان)</option>
+                                <option value="mice">سياحة الأعمال والمؤتمرات (MICE)</option>
+                                <option value="vip">الخدمات الفاخرة وكبار الشخصيات (VIP)</option>
+                                <option value="Other">اخرى</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- تفاصيل إضافية -->
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-sm font-bold text-primary flex items-center gap-1.5">
+                            <i class="fa-solid fa-pen-to-square text-secondary text-xs"></i> تفاصيل أو متطلبات إضافية
+                        </label>
+                        <textarea rows="4" placeholder="اكتب لنا تفاصيل إضافية عن موعد الرحلة المقترح، عدد الأفراد، أو أي متطلبات خاصة لتنظيم الفعالية..." class="px-4 py-3 rounded border border-gray-200 text-sm focus:outline-none focus:border-secondary bg-bgAlt/50 focus:bg-white transition-all resize-none"></textarea>
+                    </div>
+
+                    <!-- زر الإرسال -->
+                    <div class="text-center pt-2">
+                        <button type="submit" class="w-full md:w-auto bg-accent text-white font-bold px-12 py-4 rounded-md hover:bg-accent/90 shadow-md hover:shadow-lg transition-all duration-300">
+                            إرسال طلب الاستشارة <i class="fa-solid fa-arrow-left mr-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- شبكة الفوتر الرئيسية -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pt-8">
+                <!-- عمود 1: من نحن -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold border-b border-white/10 pb-3 flex items-center gap-2">
+                        <img src="https://alhussamtourism.com/wp-content/uploads/2024/11/AlhussamTourism_Left-Logo_1000px.png" alt="الحسام للسياحة" class="h-8 object-contain brightness-0 invert">
+                    </h4>
+                    <p class="text-sm text-white/70 leading-relaxed">
+                        نقدم باقات سياحية متكاملة مصممة خصيصاً للشركات والأفراد، لضمان استكشاف جمال المملكة وثقافتها وتراثها الغني بصورة مريحة وممتعة.
+                    </p>
+                </div>
+                <!-- عمود 2: روابط سريعة -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold border-b border-white/10 pb-3">روابط سريعة</h4>
+                    <ul class="space-y-2.5 text-sm text-white/70">
+                        <li><a href="#" class="hover:text-secondary transition">الرئيسية</a></li>
+                        <li><a href="#about" class="hover:text-secondary transition">من نحن</a></li>
+                        <li><a href="#services" class="hover:text-secondary transition">خدماتنا</a></li>
+                        <li><a href="#destinations" class="hover:text-secondary transition">وجهاتنا</a></li>
+                        <li><a href="#contact" class="hover:text-secondary transition">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <!-- عمود 3: الخدمات -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold border-b border-white/10 pb-3">خدماتنا</h4>
+                    <ul class="space-y-2.5 text-sm text-white/70">
+                        <li><a href="#services" class="hover:text-secondary transition">السياحة الداخلية والترفيهية</a></li>
+                        <li><a href="#services" class="hover:text-secondary transition">الحج والعمرة الميسرة</a></li>
+                        <li><a href="#services" class="hover:text-secondary transition">تنظيم المؤتمرات وسياحة الأعمال</a></li>
+                        <li><a href="#services" class="hover:text-secondary transition">تنقلات كبار الشخصيات الفاخرة</a></li>
+                    </ul>
+                </div>
+                <!-- عمود 4: الاتصال والمعلومات -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold border-b border-white/10 pb-3">بيانات الاتصال</h4>
+                    <ul class="space-y-3 text-sm text-white/70">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-secondary"></i> مكة المكرمة، المملكة العربية السعودية</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-secondary"></i> +966 55 048 7700</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-secondary"></i> sales@alhussam.com</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-secondary"></i> cs@alhussam.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- الفوتر السفلي (Copyright & Socials) -->
+            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-white/50 text-center md:text-right">
+                    حقوق الطبع والنشر © 2025 لشركة الحسام للسياحة. جميع الحقوق محفوظة. <br>
+                    <span class="text-[10px]">الحسام للسياحة هي علامة تجارية مسجلة تابعة لمجموعة سياد القابضة.</span>
+                </p>
+                <div class="flex items-center gap-4 text-lg">
+                    <a href="#" class="w-10 h-10 bg-white/5 hover:bg-secondary rounded-full flex items-center justify-center transition-colors text-white"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="w-10 h-10 bg-white/5 hover:bg-secondary rounded-full flex items-center justify-center transition-colors text-white"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="w-10 h-10 bg-white/5 hover:bg-secondary rounded-full flex items-center justify-center transition-colors text-white"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- أكواد جافا سكريبت لتفاعل الأزرار وتبديل الرحلات والقائمة للجوال -->
+    <script>
+        // تفاعل قائمة الجوال
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // جافا سكريبت التفاعلي لتبديل الرحلات والوجهات
+        function switchTab(tabId) {
+            // إخفاء جميع كتل المحتوى النصي للرحلات
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // إخفاء جميع الصور
+            document.querySelectorAll('.tab-img-element').forEach(img => {
+                img.classList.add('hidden');
+            });
+            // إزالة التنسيق النشط من جميع الأزرار
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-accent', 'text-white', 'border-accent');
+                btn.classList.add('border-white/20', 'hover:border-accent', 'hover:text-accent');
+            });
+
+            // إظهار المحتوى المختار
+            document.getElementById('tab-' + tabId).classList.add('active');
+            // إظهار الصورة المقابلة للمحتوى المختار
+            document.getElementById('img-' + tabId).classList.remove('hidden');
+
+            // تفعيل تنسيق الزر النشط المختار
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.add('active', 'bg-accent', 'text-white', 'border-accent');
+            activeBtn.classList.remove('border-white/20', 'hover:border-accent', 'hover:text-accent');
+        }
+
+        // دالة موحدة لتسهيل النزول التفاعلي للفورم مع تغيير نوع الخدمة مباشرة (CRO Core Engine)
+        function selectServiceAndScroll(serviceValue) {
+            const selectMenu = document.getElementById('service-select');
+            if (selectMenu && serviceValue) {
+                selectMenu.value = serviceValue;
+            }
+            // النزول السلس للفورم بالأسفل
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // الربط الذكي والخاص بأزرار لوحة تصفح الرحلات
+        function bookCurrentDestination() {
+            const activeTabBtn = document.querySelector('.tab-btn.active');
+            let matchedOptionValue = "";
+
+            if (activeTabBtn) {
+                if (activeTabBtn.id === "btn-makkah") matchedOptionValue = "umrah-plus";
+                else if (activeTabBtn.id === "btn-madinah") matchedOptionValue = "leisure-madinah";
+                else if (activeTabBtn.id === "btn-jeddah") matchedOptionValue = "leisure-jeddah";
+                else if (activeTabBtn.id === "btn-taif") matchedOptionValue = "leisure-taif";
+                else if (activeTabBtn.id === "btn-camp") matchedOptionValue = "leisure-camp";
+            }
+
+            selectServiceAndScroll(matchedOptionValue);
+        }
+    </script>
+</body>
+</html>
